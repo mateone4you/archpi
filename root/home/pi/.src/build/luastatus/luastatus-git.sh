@@ -6,5 +6,9 @@
 
 git clone https://github.com/shdown/luastatus.git &&
 cd ./luastatus &&
+<<<<<<< HEAD
 cmake . && make && sudo make install
 make clean
+=======
+cmake . && make && sudo make install
+>>>>>>> 7081d6f11207236c0091bdf8abba26b2ee1a26a4
