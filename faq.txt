@@ -1,5 +1,5 @@
 ### faq.txt
 
 #   » Generating a List of Installed Packages
-pacman -Q > packages.txt
-
+pacman -Q > packages.txt      # full
+pacman -Qe | awk '{print $1}' # small
