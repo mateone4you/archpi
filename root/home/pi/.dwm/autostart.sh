@@ -9,5 +9,6 @@ luastatus -b dwm -B separator=' • ' ~/.config/luastatus/fs.lua \
 				    ~/.config/luastatus/cpu-temperature.lua \
 				    ~/.config/luastatus/alsa.lua \
 				    ~/.config/luastatus/wireless.lua \
-				    ~/.config/luastatus/xkb.lua &
+				    ~/.config/luastatus/xkb.lua \
+				    ~/.config/luastatus/time-date.lua &&
 #sleep 30 && pulseaudio --start &
