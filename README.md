@@ -1,2 +1,2 @@
 # archpi
-Arch Linux for raspberry pi 2-3, DWM only.
+My Arch Linux build for raspberry pi 2-3, DWM only.
