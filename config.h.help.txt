@@ -1,0 +1,119 @@
+Файл config.h
+
+После редактирования config.h для активации изменений достаточно выполнить make install && sudo make install. 
+Первые несколько строк задают шрифт и цвета.
+
+font[] - шрифт
+normbordercolorp[] = цвет границ окна
+normbgcolor[] = цвет фона
+normfgcolor[] = цвет текста в статус баре
+selbordercolor[] = цвет границ активного окна
+selbgcolor[] = цвет фона заголовка окна
+selfgcolor[] = цвет текста заголовка окна
+borderpx = ширина границ окна
+
+Далее, после /* tagging */ идет строка, которая описывает имена тегов. По умолчанию там цифры от 1 до 9. 
+
+Следом за ней - rules[], в которых присваиваются теги для программ. 
+
+static const float mfact = 0.55
+Это означает, что размер мастер окна будет 55% от ширины экрана. 
+
+static const char *dmenucmd[]
+Тут задается команда для запуска dmenu. После нее - *termcmd[] - команда для запуска терминала. 
+Еще ниже - в keys[] указывается, какие клавиатурные сочетания будут вызывать эти команды.
+
+Правила:
+static const Rule rules[] = {
+        { "Gimp",     NULL,       NULL,       0,            True,        -1 },
+        { "Firefox",  NULL,       NULL,       1 << 0,       False,       -1 },
+        { "Roxterm",  NULL,       NULL,       1 << 2,       False,       -1 },
+        { "trayer",    NULL,       NULL,       ~0,           False,       -1 },
+};
+
+"1 << 0" означает, что Firefox будет запускаться на первом теге ("web"), "1 << 2" означает, что Roxterm будет запускаться на третьем теге
+("console"), "~0" означает, что trayer будет запускаться сразу на всех тегах. Таким образом добавляете в правила приложения, 
+которые вы используете и каждое будет запускаться только там, где надо.
+
+Настройка горячих клавиш мультимедиа клавиатуры в dwm 
+Делается это в три шага
+1) Узнаем код клавиши с помощью утилиты xev 
+2) Добавляем команду в config.h 
+3) Добавляем сочетание клавиш в config.h, которое будет вызывать эту команду 
+
+Как использовать xev. Запускаете xev в терминале и жмете нужную клавишу. Вы увидите нечто подобное:
+KeyPress event, serial 30, synthetic NO, window 0x1200001,
+root 0x15b, subw 0x0, time 235999518, (370,513), root:(371,528),
+state 0x0, keycode 64 (keysym 0xffe9, Alt_L), same_screen YES,
+Вам нужно значение keysym. 
+Теперь добавим команды для увеличения и уменьшения громкости. В разделе /* commands */ (там уже есть по-умолчанию команды для dmenu и терминала) добавьте следующие строки:
+static const char *apluscmd[] = { "amixer", "sset", "Front", "1+", NULL };
+static const char *aminuscmd[] = { "amixer", "sset", "Front", "1-", NULL };
+Далее, в static Key keys[] добавьте клавиатурные сочетания, которые будут вызывать эти команды:
+
+{ 0,                            0x1008ff13,   spawn,       {.v = apluscmd } },
+{ 0,                            0x1008ff11,   spawn,       {.v = aminuscmd } },
+0x1008ff13 и 0x1008ff11, коды которые вы получили с помощью xev. 
+
+На всякий случай показываю полностью ту часть конфига, которая отвечает за мультимедиа клавиши, а именно - пауза/плей, стоп, след. трек,
+пред. трек, перемотать вперед, перемотать назад, увел. громк., уменьш. громк., выкл./вкл. звук.
+
+/* commands */
+static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb",
+selbgcolor, "-sf", selfgcolor, NULL };
+static const char *termcmd[]  = { "roxterm", NULL };
+static const char *apluscmd[] = { "amixer", "sset", "Front", "1+", NULL };
+static const char *aminuscmd[] = { "amixer", "sset", "Front", "1-", NULL };
+static const char *atogglecmd[] = { "amixer", "sset", "Front", "toggle", NULL };
+static const char *mpdnextcmd[] = { "mpc", "next", NULL };
+static const char *mpdprevcmd[] = { "mpc", "prev", NULL };
+static const char *mpdstopcmd[] = { "mpc", "stop", NULL };
+static const char *mpdtogglecmd[] = { "mpc", "toggle", NULL };
+static const char *mpdseekpcmd[] = { "mpc", "seek", "+00:00:10", NULL };
+static const char *mpdseekmcmd[] = { "mpc", "seek", "-00:00:10", NULL };
+
+static Key keys[] = {
+        /* modifier                     key        function        argument */
+        { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+        { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+        { MODKEY,                       XK_b,      togglebar,      {0} },
+        { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+        { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+        { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+        { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+        { MODKEY,                       XK_Return, zoom,           {0} },
+        { MODKEY,                       XK_Tab,    view,           {0} },
+        { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+        { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+        { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+        { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+        { MODKEY,                       XK_space,  setlayout,      {0} },
+        { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+        { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+        { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+        { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+        { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+        { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+        { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+        { 0,                            0x1008ff13,   spawn,       {.v = apluscmd } },
+        { 0,                            0x1008ff11,   spawn,       {.v = aminuscmd } },
+        { 0,                            0x1008ff14,   spawn,       {.v = mpdtogglecmd } },
+        { 0,                            0x1008ff15,   spawn,       {.v = mpdstopcmd } },
+        { 0,                            0x1008ff17,   spawn,       {.v = mpdnextcmd } },
+        { 0,                            0x1008ff16,   spawn,       {.v = mpdprevcmd } },
+        { 0,                            0x1008ff12,   spawn,       {.v = atogglecmd } },
+        { MODKEY,                       0x1008ff17,   spawn,       {.v = mpdseekpcmd } },
+        { MODKEY,                       0x1008ff16,   spawn,       {.v = mpdseekmcmd } },
+
+        TAGKEYS(                        XK_1,                      0)
+        TAGKEYS(                        XK_2,                      1)
+        TAGKEYS(                        XK_3,                      2)
+        TAGKEYS(                        XK_4,                      3)
+        TAGKEYS(                        XK_5,                      4)
+        TAGKEYS(                        XK_6,                      5)
+        TAGKEYS(                        XK_7,                      6)
+        TAGKEYS(                        XK_8,                      7)
+        TAGKEYS(                        XK_9,                      8)
+        { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+};
+
