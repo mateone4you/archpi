@@ -11,5 +11,5 @@ luastatus -b dwm -B separator=' • ' ~/.config/luastatus/fs.lua \
 				    ~/.config/luastatus/wireless.lua \
 				    ~/.config/luastatus/xkb.lua \
 				    ~/.config/luastatus/time-date.lua &
-menutray &
+#menutray &
 #sleep 30 && pulseaudio --start &

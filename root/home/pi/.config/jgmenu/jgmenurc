@@ -10,7 +10,7 @@ csv_cmd           = lx
 #   - horizontal: left, right
 #   - vertical:   top, bottom
 #
-menu_halign       = left
+menu_halign       = right
 menu_valign       = top
 
 item_margin_x     = 3
@@ -23,17 +23,17 @@ item_border       = 0
 max_items         = 80
 min_items         = 0
 font              = monospace 10
-icon_size         = 18
-icon_theme        = Papirus
+#icon_size         = 18
+#icon_theme        = Papirus
 ignore_xsettings  = 1
 ignore_icon_cache = 1
 show_title        = 0
 
-color_menu_bg     = #222222 100
-color_menu_fg     = #222222 100
-color_norm_bg     = #222222 100
+color_menu_bg     = #000000 100
+color_menu_fg     = #000000 100
+color_norm_bg     = #000000 100
 color_norm_fg     = #ffffff 100
-color_sel_bg      = #005577 100
-color_sel_fg      = #5294e2 100
-color_noprog_fg   = #5294e2 100
-color_title_bg    = #ffffff 20
+color_sel_bg      = #FF0000 100
+color_sel_fg      = #ffffff 100
+color_noprog_fg   = #ffffff 100
+color_title_bg    = #ffffff 100
