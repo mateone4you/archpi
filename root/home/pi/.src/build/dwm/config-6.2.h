@@ -33,6 +33,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Surf",     NULL,	  NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -62,7 +63,23 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-
+/* Определили путь к скрипту */
+#define FIND_APP_SH "/home/pi/.bin/find_app.sh"
+/* Команда запуска browser: */
+static const char *browsercmd[]  = { FIND_APP_SH, "surf", NULL };
+/* Команда запуска file manager: */
+static const char *file_manager[]  = { FIND_APP_SH, "pcmanfm", NULL };
+/* Команда для получения скриншота: */
+static const char *scrotcmd[]  = { "scrot", "/home/alex/screenshots/%Y-%m-%d-%T-screenshot.png", NULL };
+/* Jgmenu: */
+static const char *jgmenu[]  = { FIND_APP_SH, "jgmenu_run", NULL };
+/* Команды управления громкостью: */
+/* Громкость выше на 5% */
+static const char *volupcmd[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%+", "unmute", NULL };
+/* Громкость ниже на 5% */
+static const char *voldowncmd[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%-", "unmute", NULL };
+/* Вкл/выкл звук */
+static const char *volmutecmd[]  = { "amixer", "-D", "pulse", "sset", "Master", "toggle", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -98,6 +115,14 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+/* My */
+	{ MODKEY,                       0xff61,      spawn,          {.v = scrotcmd } },
+	{ MODKEY|ShiftMask,             XK_b,        spawn,          {.v = browsercmd } },
+	{ MODKEY|ShiftMask,             XK_f,        spawn,          {.v = file_manager } },
+	{ MODKEY|ShiftMask,             XK_m,        spawn,          {.v = jgmenu } },
+	{ NULL,                         0x1008ff13,  spawn,          {.v = volupcmd } },
+	{ NULL,                         0x1008ff11,  spawn,          {.v = voldowncmd } },
+	{ NULL,                         0x1008ff12,  spawn,          {.v = volmutecmd } },	
 };
 
 /* button definitions */
