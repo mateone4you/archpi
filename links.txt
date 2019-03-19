@@ -1,4 +1,4 @@
 #I use links:
 
 https://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2#wiki
-
+http://zenux.ru/articles/42/
