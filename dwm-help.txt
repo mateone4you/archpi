@@ -10,7 +10,10 @@ Win-Shift-c - закрыть активное окно
 Win-Shift-q - закрыть dwm
 Win-t - переход в tiled режим (основной режим)
 Win-m - переход в monocle (переводит окно в полноэкранный режим)
+Win-f - переход в float (плавающие окна)
 Мои изменения:
 Win-Shift-b - Браузер (surf)
 Win-Shift-f - Файловый менеджер (pcmanfm)
 Win-Shift-m - Меню программ (jgmenu)
+Win-Shift-l - Блокировка экрана
+Win-Shift-p - Выключение

@@ -71,9 +71,13 @@ static const char *browsercmd[]  = { FIND_APP_SH, "surf", NULL };
 /* Команда запуска file manager: */
 static const char *file_manager[]  = { FIND_APP_SH, "pcmanfm", NULL };
 /* Команда для получения скриншота: */
-static const char *scrotcmd[]  = { "scrot", "/home/alex/screenshots/%Y-%m-%d-%T-screenshot.png", NULL };
+static const char *scrotcmd[]  = { "scrot", "/home/pi/screenshots/%Y-%m-%d-%T-screenshot.png", NULL };
 /* Jgmenu: */
 static const char *jgmenu[]  = { FIND_APP_SH, "jgmenu_run", NULL };
+/* lock: */
+static const char *lock[]  = { "lock.sh", NULL };
+/* poweroff: */
+static const char *poweroff[]  = { "i3-logout.sh", NULL };
 /* Команды управления громкостью: */
 /* Громкость выше на 5% */
 static const char *volupcmd[]  = { "amixer", "-D", "pulse", "sset", "Master", "5%+", "unmute", NULL };
@@ -121,6 +125,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b,        spawn,          {.v = browsercmd } },
 	{ MODKEY|ShiftMask,             XK_f,        spawn,          {.v = file_manager } },
 	{ MODKEY|ShiftMask,             XK_m,        spawn,          {.v = jgmenu } },
+	{ MODKEY|ShiftMask,             XK_l,        spawn,          {.v = lock } },
+	{ MODKEY|ShiftMask,             XK_p,        spawn,          {.v = poweroff } },
 	{ NULL,                         0x1008ff13,  spawn,          {.v = volupcmd } },
 	{ NULL,                         0x1008ff11,  spawn,          {.v = voldowncmd } },
 	{ NULL,                         0x1008ff12,  spawn,          {.v = volmutecmd } },	
