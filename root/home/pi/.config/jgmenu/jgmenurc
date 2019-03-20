@@ -22,7 +22,7 @@ item_border       = 0
 
 max_items         = 80
 min_items         = 0
-font              = Roboto Mono Medium 10
+font              = Roboto Mono Light 10
 icon_size         = 18
 icon_theme        = Arc
 ignore_xsettings  = 1
