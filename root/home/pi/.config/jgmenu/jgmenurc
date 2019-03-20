@@ -1,5 +1,5 @@
 enu_margin_x     = 0
-menu_margin_y     = 20
+menu_margin_y     = 21
 menu_width        = 200
 menu_radius       = 4
 menu_border       = 1
@@ -22,18 +22,18 @@ item_border       = 0
 
 max_items         = 80
 min_items         = 0
-font              = monospace 10
-#icon_size         = 18
-#icon_theme        = Papirus
+font              = Roboto Mono Medium 10
+icon_size         = 18
+icon_theme        = Arc
 ignore_xsettings  = 1
 ignore_icon_cache = 1
 show_title        = 0
 
-color_menu_bg     = #000000 100
-color_menu_fg     = #000000 100
-color_norm_bg     = #000000 100
+color_menu_bg     = #383C4A 100
+color_menu_fg     = #383C4A 100
+color_norm_bg     = #383C4A 100
 color_norm_fg     = #ffffff 100
-color_sel_bg      = #FF0000 100
+color_sel_bg      = #5294E2 100
 color_sel_fg      = #ffffff 100
-color_noprog_fg   = #ffffff 100
+color_noprog_fg   = #5294E2 100
 color_title_bg    = #ffffff 100
