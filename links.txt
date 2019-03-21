@@ -3,3 +3,4 @@
 https://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2#wiki
 http://zenux.ru/articles/42/
 https://github.com/creio?tab=repositories
+https://github.com/sakaki-/gentoo-on-rpi3-64bit
