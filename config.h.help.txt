@@ -3,21 +3,21 @@
 После редактирования config.h для активации изменений достаточно выполнить: make && sudo make install. 
 Первые несколько строк задают шрифт и цвета.
 
-static const unsigned int borderpx  = 1;                        # ширина границ окна           
+static const unsigned int borderpx  = 1;                        /* ширина границ окна  */         
 
-static const char *fonts[]          = { "monospace:size=10" };  # шрифт
-static const char dmenufont[]       = "monospace:size=10";      # шрифт dmenu      
-static const char col_gray1[]       = "#222222";                # цвет фона
-static const char col_gray2[]       = "#444444";                # цвет границ активного окна
-static const char col_gray3[]       = "#bbbbbb";                # цвет текста в статус баре
-static const char col_gray4[]       = "#eeeeee";                # цвет текста заголовка окна
-static const char col_cyan[]        = "#005577";                # цвет фона заголовка окна
+static const char *fonts[]          = { "monospace:size=10" };  /* шрифт */
+static const char dmenufont[]       = "monospace:size=10";      /* шрифт dmenu */    
+static const char col_gray1[]       = "#222222";                /* цвет фона */
+static const char col_gray2[]       = "#444444";                /* цвет границ активного окна */ 
+static const char col_gray3[]       = "#bbbbbb";                /* цвет текста в статус баре */
+static const char col_gray4[]       = "#eeeeee";                /* цвет текста заголовка окна */
+static const char col_cyan[]        = "#005577";                /* цвет фона заголовка окна */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 
-static const float mfact     = 0.50;                            # Это означает, что размер мастер окна будет 50% от ширины экрана.
+static const float mfact     = 0.50;                            /* Это означает, что размер мастер окна будет 50% от ширины экрана. */
 
 Правила:
 
@@ -35,7 +35,7 @@ static const Rule rules[] = {
 "1 << 8" означает, что Firefox будет запускаться на девятом теге ("9"), "0" означает, что Gimp будет запускаться сразу на всех тегах. Таким образом добавляете в правила приложения, которые вы используете и каждое будет запускаться только там, где надо.
 
 /* key definitions */
-#define MODKEY Mod4Mask                                                # клавиша "модификатор" (win) 
+#define MODKEY Mod4Mask                                                /* клавиша "модификатор" (win) */
  
 Настройка горячих клавиш мультимедиа клавиатуры в dwm 
 Делается это в три шага
