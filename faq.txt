@@ -1,5 +1,9 @@
 ### faq.txt
 
+## pacman
 #   » Generating a List of Installed Packages
 pacman -Q > packages.txt      # full
 pacman -Qe | awk '{print $1}' # small
+
+## users
+sudo usermod -a -G wheel user # добавить пользователя user в группу wheel
