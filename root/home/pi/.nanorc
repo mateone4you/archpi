@@ -1,0 +1,3 @@
+### yay -S nano-syntax-highlighting-git !!!
+
+include /usr/share/nano-syntax-highlighting/*.nanorc
